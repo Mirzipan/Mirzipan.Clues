@@ -1,0 +1,18 @@
+{
+    "name": "Framed.Definitions",
+    "rootNamespace": "",
+    "references": [
+        "Mirzipan.Framed",
+        "Mirzipan.Bibliotheca",
+        "Mirzipan.Infusion"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
