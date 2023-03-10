@@ -1,0 +1,26 @@
+{
+  "name": "net.mirzipan.framed.definitions",
+  "displayName": "Framed Definitions",
+  "version": "1.0.0",
+  "unity": "2021.3",
+  "description": "Definitions module for Framed",
+  "author": {
+	 "name": "Mirzipan"
+  },
+  "keywords": [ 
+	 "package",
+	 "unity",
+     "mirzipan",
+     "extensions",
+	 "utils",
+     "framework",
+     "frame",
+     "definitions",
+     "definition"
+  ],
+  "dependencies": {
+    "net.mirzipan.bibliotheca" : "1.2.1",
+    "net.mirzipan.framed" : "1.0.1-alpha.3",
+    "net.mirzipan.infusion" : "1.0.3"
+  }
+}
