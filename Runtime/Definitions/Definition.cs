@@ -11,13 +11,10 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         [SerializeField]
         protected bool _isDefault;
         [SerializeField]
-        protected QuadByte _secondaryId;
-    
+        protected CompositeId _id;
         public bool IsEnabled => _isEnabled;
         public bool IsDefault => _isDefault;
-        public QuadByte SecondaryId => _secondaryId;
-        public abstract QuadByte PrimaryId { get; }
-        public abstract CompositeId Id { get; }
+        public CompositeId Id => _id;
         
         /// <summary>
         /// Initialize any things necessary.
