@@ -39,7 +39,7 @@ It comes with a property drawer, for easier editing. Both parts of the id are vi
 
 ## Definition
 
-Basic type from which all of the other definitions need to inherit.
+Basic `ScriptableObject` type from which all of the other definitions need to inherit.
 It contains some basic properties:
 * **IsEnabled** - Should this definition be used? 
 * **IsDefault** - It this the default definition for the type?

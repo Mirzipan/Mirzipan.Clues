@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.1] - 2023-03-11
+
+## Added
+- Methods for modifying default definitions during runtime
+
 ## [1.1.0] - 2023-03-11
 
 ### Changed
