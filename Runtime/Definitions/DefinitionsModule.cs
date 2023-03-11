@@ -52,17 +52,30 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         /// <param name="definition"></param>
         public void Add(Definition definition)
         {
-            var type = definition.GetType();
-            AddDefinition(definition, type);
+            Type type = definition.GetType();
+            AddDefinition(definition, type, true);
                 
             var attributes = type.GetCustomAttributes<DefinitionTypeAttribute>();
             foreach (var attribute in attributes)
             {
                 if (attribute.IndexedType != null)
                 {
-                    AddDefinition(definition, attribute.IndexedType);
+                    AddDefinition(definition, attribute.IndexedType, false);
                 }
             }
+        }
+
+        /// <summary>
+        /// Makes the specified definition the default one for its type.
+        /// </summary>
+        /// <param name="definition"></param>
+        public void MakeDefault(Definition definition)
+        {
+            Type type = definition.GetType();
+            RemoveDefault(type);
+            
+            definition.SetDefault(true);
+            _defaults[type] = definition;
         }
 
         /// <summary>
@@ -72,7 +85,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         /// <returns></returns>
         public bool Remove(Definition definition)
         {
-            var type = definition.GetType();
+            Type type = definition.GetType();
             bool result = RemoveDefinition(definition, type);
             
             var attributes = type.GetCustomAttributes<DefinitionTypeAttribute>();
@@ -85,6 +98,34 @@ namespace Mirzipan.Definitions.Runtime.Definitions
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Removes the default definition of the specified type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public bool RemoveDefault<T>()
+        {
+            Type type = typeof(T);
+            return RemoveDefault(type);
+        }
+
+        /// <summary>
+        /// Removes the default definition of the specified type.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public bool RemoveDefault(Type type)
+        {
+            if (!_defaults.TryGetValue(type, out var previousDefault))
+            {
+                return false;
+            }
+
+            previousDefault.SetDefault(false);
+            return _defaults.Remove(type);
+
         }
 
         #endregion Manipulation
@@ -122,7 +163,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         /// <returns>Definition of type and id, if found, null otherwise</returns>
         public T Get<T>(CompositeId id) where T : Definition
         {
-            var type = typeof(T);
+            Type type = typeof(T);
             if (!_data.TryGetValue(type, out var innerDefinition))
             {
                 return null;
@@ -144,7 +185,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         /// <returns></returns>
         public T Default<T>() where T : Definition
         {
-            var type = typeof(T);
+            Type type = typeof(T);
             return _defaults.TryGetValue(type, out var result) ? (T)result : null;
         }
 
@@ -201,7 +242,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
             _data.Clear();
         }
         
-        private void AddDefinition(Definition definition, Type type)
+        private void AddDefinition(Definition definition, Type type, bool allowAsDefault)
         {
             if (!_data.TryGetValue(type, out var innerDefinitions))
             {
@@ -211,7 +252,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
 
             innerDefinitions[definition.Id.Value] = definition;
 
-            if (definition.IsDefault)
+            if (allowAsDefault && definition.IsDefault)
             {
                 _defaults[type] = definition;
             }

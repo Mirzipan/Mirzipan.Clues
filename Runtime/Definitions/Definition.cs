@@ -23,5 +23,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         {
             
         }
+
+        internal void SetDefault(bool isDefault) => _isDefault = isDefault;
     }
 }
