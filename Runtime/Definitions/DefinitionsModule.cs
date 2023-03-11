@@ -13,7 +13,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
 {
     public class DefinitionsModule : CoreModule, IDefinitions
     {
-        private readonly Dictionary<Type, Dictionary<CompositeId, Definition>> _data;
+        private readonly Dictionary<Type, Dictionary<ulong, Definition>> _data;
         private readonly Dictionary<Type, Definition> _defaults;
 
         private string _path;
@@ -22,7 +22,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
 
         public DefinitionsModule(string path)
         {
-            _data = new Dictionary<Type, Dictionary<CompositeId, Definition>>();
+            _data = new Dictionary<Type, Dictionary<ulong, Definition>>();
             _defaults = new Dictionary<Type, Definition>();
             
             _path = path;
@@ -129,7 +129,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
             }
 
             Definition result;
-            if (innerDefinition == null || !innerDefinition.TryGetValue(id, out result))
+            if (innerDefinition == null || !innerDefinition.TryGetValue(id.Value, out result))
             {
                 return null;
             }
@@ -205,11 +205,11 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         {
             if (!_data.TryGetValue(type, out var innerDefinitions))
             {
-                innerDefinitions = new Dictionary<CompositeId, Definition>();
+                innerDefinitions = new Dictionary<ulong, Definition>();
                 _data[type] = innerDefinitions;
             }
 
-            innerDefinitions[definition.Id] = definition;
+            innerDefinitions[definition.Id.Value] = definition;
 
             if (definition.IsDefault)
             {
@@ -224,7 +224,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
                 return false;
             }
 
-            return innerDefinitions.Remove(definition.Id);
+            return innerDefinitions.Remove(definition.Id.Value);
         }
 
         private static void LogDefinitionInitError(Definition definition, Object asset, Exception exception)
