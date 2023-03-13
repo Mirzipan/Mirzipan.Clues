@@ -273,7 +273,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
 #if UNITY_EDITOR
             Debug.LogErrorFormat("Error while processing {0} in {1}", definition.Id, AssetDatabase.GetAssetPath(asset));
 #else
-            Debug.LogErrorFormat("Error while processing {0} in {1}", definition.Code, asset.name);
+            Debug.LogErrorFormat("Error while processing {0} in {1}", definition.Id, asset.name);
 #endif
             Debug.LogError(exception);
         }
