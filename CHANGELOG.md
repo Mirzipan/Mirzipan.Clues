@@ -1,8 +1,13 @@
 # Changelog
 
+## [1.1.2] - 2023-03-13
+
+### Fixed
+- Fixed trying to access definition.Code instead of definition.Id in DefinitionsModule
+
 ## [1.1.1] - 2023-03-11
 
-## Added
+### Added
 - Methods for modifying default definitions during runtime
 
 ## [1.1.0] - 2023-03-11
