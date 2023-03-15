@@ -214,7 +214,7 @@ namespace Mirzipan.Definitions.Runtime.Definitions
                 try
                 {
                     definition.Init();
-                    Debug.AssertFormat(definition.Id.Value.Value != 0u, "Definition {0} is missing an id.", definition);
+                    Debug.AssertFormat(definition.Id.Value != 0u, "Definition {0} is missing an id.", definition);
                 }
                 catch (DefinitionInitializationException initializationException)
                 {
