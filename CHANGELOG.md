@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.3] - 2023-03-15
+
+### Changed
+- Bibliotheca version 1.3.0
+
 ## [1.1.2] - 2023-03-13
 
 ### Fixed
