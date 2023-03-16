@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.4] - 2023-03-16
+
+### Changed
+- Bibliotheca version 1.3.1
+- Infusion version 2.0.0-alpha.1
+
 ## [1.1.3] - 2023-03-15
 
 ### Changed
