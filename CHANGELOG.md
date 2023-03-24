@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0] - 2023-03-24
+
+### Added
+- VisualDefinition now contains Color
+
+### Changed
+- VisualDefinition now only has read-only properties accessible
+
 ## [1.1.4] - 2023-03-16
 
 ### Changed
