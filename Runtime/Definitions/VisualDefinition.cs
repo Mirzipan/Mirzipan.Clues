@@ -6,9 +6,21 @@ namespace Mirzipan.Definitions.Runtime.Definitions
     public class VisualDefinition : Definition
     {
         [Header("Visuals")]
-        public Sprite Icon;
-        public string FullName;
-        public string ShortName;
-        public string Description;
+        [SerializeField]
+        private Sprite _icon;
+        [SerializeField]
+        private Color32 _color;
+        [SerializeField]
+        private string _fullName;
+        [SerializeField]
+        private string _shortName;
+        [SerializeField]
+        private string _description;
+        
+        public Sprite Icon => _icon;
+        public Color32 Color => _color;
+        public string FullName => _fullName;
+        public string ShortName => _shortName;
+        public string Description => _description;
     }
 }
