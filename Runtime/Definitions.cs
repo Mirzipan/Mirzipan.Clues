@@ -3,41 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Mirzipan.Bibliotheca.Identifiers;
-using Mirzipan.Definitions.Runtime.Meta;
-using Mirzipan.Framed.Modules;
+using Mirzipan.Clues.Exceptions;
+using Mirzipan.Clues.Meta;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Mirzipan.Definitions.Runtime.Definitions
+namespace Mirzipan.Clues
 {
-    public class DefinitionsModule : CoreModule, IDefinitions
+    public class Definitions : IDefinitions, IDisposable
     {
         private readonly Dictionary<Type, Dictionary<ulong, Definition>> _data;
         private readonly Dictionary<Type, Definition> _defaults;
 
-        private string _path;
-
         #region Lifecycle
 
-        public DefinitionsModule(string path)
+        public Definitions()
         {
             _data = new Dictionary<Type, Dictionary<ulong, Definition>>();
             _defaults = new Dictionary<Type, Definition>();
-            
-            _path = path;
         }
 
-        protected override void OnInit()
-        {
-        }
-
-        protected override void OnLoad()
-        {
-            LoadDefinitionsAtPath(_path);
-        }
-
-        protected override void OnUnload()
+        public void Dispose()
         {
             UnloadDefinitions();
         }
@@ -45,6 +34,11 @@ namespace Mirzipan.Definitions.Runtime.Definitions
         #endregion Lifecycle
 
         #region Manipulation
+
+        public void LoadAtPath(string path)
+        {
+            LoadDefinitionsAtPath(path);
+        }
         
         /// <summary>
         /// Adds the specified definition. In case there already is one with the same indexed type and id, this will overwrite it

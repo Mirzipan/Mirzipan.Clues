@@ -1,7 +1,7 @@
 ﻿using Mirzipan.Bibliotheca.Identifiers;
 using UnityEngine;
 
-namespace Mirzipan.Definitions.Runtime.Definitions
+namespace Mirzipan.Clues
 {
     public abstract class Definition: ScriptableObject
     {

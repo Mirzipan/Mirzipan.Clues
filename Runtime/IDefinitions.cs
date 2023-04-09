@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Mirzipan.Bibliotheca.Identifiers;
 
-namespace Mirzipan.Definitions.Runtime.Definitions
+namespace Mirzipan.Clues
 {
     public interface IDefinitions
     {

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Mirzipan.Definitions.Runtime.Definitions
+namespace Mirzipan.Clues
 {
-    [CreateAssetMenu(fileName = "NewVisualDefinition", menuName = "Framed/Definitions/Visual Definition", order = 0)]
+    [CreateAssetMenu(fileName = "NewVisualDefinition", menuName = "Clues/Visual Definition", order = 0)]
     public class VisualDefinition : Definition
     {
         [Header("Visuals")]

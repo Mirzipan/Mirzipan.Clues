@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mirzipan.Definitions.Runtime.Meta
+namespace Mirzipan.Clues.Meta
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
     public class DefinitionTypeAttribute: Attribute
