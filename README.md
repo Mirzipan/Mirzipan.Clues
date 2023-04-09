@@ -1,5 +1,19 @@
 [![openupm](https://img.shields.io/npm/v/net.mirzipan.clues?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/net.mirzipan.clues/) ![GitHub](https://img.shields.io/github/license/Mirzipan/Mirzipan.Clues)
 
+- [Mirzipan.Clues](#mirzipanclues)
+  * [Definitions](#definitions)
+  * [IDefinitions](#idefinitions)
+  * [Configuration](#configuration)
+  * [CompositeId](#compositeid)
+  * [Definition](#definition)
+  * [Visual Definition](#visual-definition)
+  * [Definition Type Attribute](#definition-type-attribute)
+- [Examples](#examples)
+  * [Example #1](#example--1)
+    + [Solution A - Separate Definitions](#solution-a---separate-definitions)
+    + [Solution B - Combined Definition](#solution-b---combined-definition)
+    + [Solution C - Inherited Definition](#solution-c---inherited-definition)
+
 # Mirzipan.Clues
 
 Simple scriptable object-based definition system for your data-driven project.
