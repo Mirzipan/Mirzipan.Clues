@@ -3,15 +3,14 @@
 ## [2.0.0] - 2023-04-09
 
 ### Changed
-- Changed injection from Mirzipan.Infusion to Reflex
 - Renamed from Framed.Definitions to Mirzipan.Clues, since it is no longer a plugin for Framed
 - Renamed DefinitionsModule to just Definitions
 - Updated namespaces
-- Renamed configuration to installer
 
 ### Removed
 - Removed reference to Mirzipan.Framed
 - Removed reference to Mirzipan.Infusion
+- Removed configuration
 
 ## [1.2.0] - 2023-03-24
 
