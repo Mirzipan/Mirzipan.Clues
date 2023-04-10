@@ -37,7 +37,7 @@ T Get<T>(CompositeId id) where T : ADefinition;
 Returns the definition of the given type, with the specified `id`.
 
 ```csharp
-T Default<T>() where T : Definition;
+T Default<T>() where T : ADefinition;
 ```
 Returns the default definition of the given type. 
 If no definition is marked as default, it will return `null`.
