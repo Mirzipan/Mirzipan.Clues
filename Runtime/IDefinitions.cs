@@ -10,7 +10,7 @@ namespace Mirzipan.Clues
         /// </summary>
         /// <typeparam name="T">Definition type</typeparam>
         /// <returns>Definition of type, if found, null otherwise</returns>
-        IEnumerable<T> GetAll<T>() where T : Definition;
+        IEnumerable<T> GetAll<T>() where T : ADefinition;
 
         /// <summary>
         /// Returns a definition with the given id.
@@ -18,13 +18,13 @@ namespace Mirzipan.Clues
         /// <param name="id"></param>
         /// <typeparam name="T">Definition type</typeparam>
         /// <returns>Definition of type and id, if found, null otherwise</returns>
-        T Get<T>(CompositeId id) where T : Definition;
+        T Get<T>(CompositeId id) where T : ADefinition;
 
         /// <summary>
         /// Returns the default definition for the type.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T Default<T>() where T : Definition;
+        T Default<T>() where T : ADefinition;
     }
 }

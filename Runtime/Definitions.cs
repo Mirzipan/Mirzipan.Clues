@@ -15,15 +15,15 @@ namespace Mirzipan.Clues
 {
     public class Definitions : IDefinitions, IDisposable
     {
-        private readonly Dictionary<Type, Dictionary<ulong, Definition>> _data;
-        private readonly Dictionary<Type, Definition> _defaults;
+        private readonly Dictionary<Type, Dictionary<ulong, ADefinition>> _data;
+        private readonly Dictionary<Type, ADefinition> _defaults;
 
         #region Lifecycle
 
         public Definitions()
         {
-            _data = new Dictionary<Type, Dictionary<ulong, Definition>>();
-            _defaults = new Dictionary<Type, Definition>();
+            _data = new Dictionary<Type, Dictionary<ulong, ADefinition>>();
+            _defaults = new Dictionary<Type, ADefinition>();
         }
 
         public void Dispose()
@@ -44,7 +44,7 @@ namespace Mirzipan.Clues
         /// Adds the specified definition. In case there already is one with the same indexed type and id, this will overwrite it
         /// </summary>
         /// <param name="definition"></param>
-        public void Add(Definition definition)
+        public void Add(ADefinition definition)
         {
             Type type = definition.GetType();
             AddDefinition(definition, type, true);
@@ -63,7 +63,7 @@ namespace Mirzipan.Clues
         /// Makes the specified definition the default one for its type.
         /// </summary>
         /// <param name="definition"></param>
-        public void MakeDefault(Definition definition)
+        public void MakeDefault(ADefinition definition)
         {
             Type type = definition.GetType();
             RemoveDefault(type);
@@ -77,7 +77,7 @@ namespace Mirzipan.Clues
         /// </summary>
         /// <param name="definition"></param>
         /// <returns></returns>
-        public bool Remove(Definition definition)
+        public bool Remove(ADefinition definition)
         {
             Type type = definition.GetType();
             bool result = RemoveDefinition(definition, type);
@@ -131,7 +131,7 @@ namespace Mirzipan.Clues
         /// </summary>
         /// <typeparam name="T">Definition type</typeparam>
         /// <returns>Definition of type, if found, null otherwise</returns>
-        public IEnumerable<T> GetAll<T>() where T : Definition
+        public IEnumerable<T> GetAll<T>() where T : ADefinition
         {
             if (!_data.TryGetValue(typeof(T), out var innerDefinition))
             {
@@ -155,7 +155,7 @@ namespace Mirzipan.Clues
         /// <param name="id"></param>
         /// <typeparam name="T">Definition type</typeparam>
         /// <returns>Definition of type and id, if found, null otherwise</returns>
-        public T Get<T>(CompositeId id) where T : Definition
+        public T Get<T>(CompositeId id) where T : ADefinition
         {
             Type type = typeof(T);
             if (!_data.TryGetValue(type, out var innerDefinition))
@@ -163,7 +163,7 @@ namespace Mirzipan.Clues
                 return null;
             }
 
-            Definition result;
+            ADefinition result;
             if (innerDefinition == null || !innerDefinition.TryGetValue(id.Value, out result))
             {
                 return null;
@@ -177,7 +177,7 @@ namespace Mirzipan.Clues
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T Default<T>() where T : Definition
+        public T Default<T>() where T : ADefinition
         {
             Type type = typeof(T);
             return _defaults.TryGetValue(type, out var result) ? (T)result : null;
@@ -194,12 +194,12 @@ namespace Mirzipan.Clues
             foreach (var asset in assets)
             {
                 var type = asset.GetType();
-                if (!typeof(Definition).IsAssignableFrom(type))
+                if (!typeof(ADefinition).IsAssignableFrom(type))
                 {
                     continue;
                 }
 
-                var definition = asset as Definition;
+                var definition = asset as ADefinition;
                 if (definition == null || !definition.IsEnabled)
                 {
                     continue;
@@ -236,11 +236,11 @@ namespace Mirzipan.Clues
             _data.Clear();
         }
         
-        private void AddDefinition(Definition definition, Type type, bool allowAsDefault)
+        private void AddDefinition(ADefinition definition, Type type, bool allowAsDefault)
         {
             if (!_data.TryGetValue(type, out var innerDefinitions))
             {
-                innerDefinitions = new Dictionary<ulong, Definition>();
+                innerDefinitions = new Dictionary<ulong, ADefinition>();
                 _data[type] = innerDefinitions;
             }
 
@@ -252,7 +252,7 @@ namespace Mirzipan.Clues
             }
         }
 
-        private bool RemoveDefinition(Definition definition, Type type)
+        private bool RemoveDefinition(ADefinition definition, Type type)
         {
             if (!_data.TryGetValue(type, out var innerDefinitions))
             {
@@ -262,7 +262,7 @@ namespace Mirzipan.Clues
             return innerDefinitions.Remove(definition.Id.Value);
         }
 
-        private static void LogDefinitionInitError(Definition definition, Object asset, Exception exception)
+        private static void LogDefinitionInitError(ADefinition definition, Object asset, Exception exception)
         {
 #if UNITY_EDITOR
             Debug.LogErrorFormat("Error while processing {0} in {1}", definition.Id, AssetDatabase.GetAssetPath(asset));

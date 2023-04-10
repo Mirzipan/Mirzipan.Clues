@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mirzipan.Clues
 {
-    public abstract class Definition: ScriptableObject
+    public abstract class ADefinition: ScriptableObject
     {
         [Header("Meta")]
         [SerializeField]

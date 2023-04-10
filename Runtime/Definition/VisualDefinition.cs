@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Mirzipan.Clues
+namespace Mirzipan.Clues.Definition
 {
     [CreateAssetMenu(fileName = "NewVisualDefinition", menuName = "Clues/Visual Definition", order = 0)]
-    public class VisualDefinition : Definition
+    public class VisualDefinition : ADefinition
     {
         [Header("Visuals")]
         [SerializeField]
