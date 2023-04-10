@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.0] - 2023-04-10
+
+### Changed
+- Renamed Definition to ADefinition
+- Moved VisualDefinition to Definition subfolder
+
 ## [2.0.0] - 2023-04-09
 
 ### Changed

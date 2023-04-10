@@ -27,12 +27,12 @@ Main class that allows access to definitions.
 Technically the cleaner way of accessing definitions, as it does not expose any way of manipulating them.
 
 ```csharp
-IEnumerable<T> GetAll<T>() where T : Definition;
+IEnumerable<T> GetAll<T>() where T : ADefinition;
 ```
 Returns all definitions of the given type.
 
 ```csharp
-T Get<T>(CompositeId id) where T : Definition;
+T Get<T>(CompositeId id) where T : ADefinition;
 ```
 Returns the definition of the given type, with the specified `id`.
 
@@ -103,7 +103,7 @@ Create `CreatureDefinition` with all the stats necessary.
 Optionally add some limiters so that people cannot enter values that are no valid for gameplay purposes.
 In this case, we will limit all stats to be between 0 and 255.
 ```csharp
-public class CreatureDefinition: Definition
+public class CreatureDefinition: ADefinition
 {
     [Header("Stats"]
     [Range(0, 255)]

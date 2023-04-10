@@ -1,7 +1,7 @@
 {
   "name": "net.mirzipan.clues",
   "displayName": "Mirzipan.Clues",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "unity": "2021.3",
   "description": "Simple scriptable object-based definition system for your data-driven project",
   "author": {
@@ -15,6 +15,6 @@
      "definition"
   ],
   "dependencies": {
-    "net.mirzipan.bibliotheca" : "1.3.1"
+    "net.mirzipan.bibliotheca" : "1.3.2"
   }
 }
